@@ -24,32 +24,63 @@ const changeInfo = (type) => {
 </script>
 
 <template>
-  <div v-if="user">
-    <h1>{{ user.name.first }} {{ user.name.last }}</h1>
+  <div v-if="user" class="flex justify-center items-center h-screen">
+    <div class="bg-blue-400 p-8 rounded-lg shadow-lg text-center w-96 h-96">
+      <h1 class="text-2xl font-semibold">
+        {{ user.name.first }} {{ user.name.last }}
+      </h1>
 
-    <img :src="user.picture.large" alt="User Image" />
+      <img
+        :src="user.picture.large"
+        alt="User Image"
+        class="w-32 h-32 rounded-full mx-auto my-4"
+      />
 
-    <div>
-      <p v-if="currentInfo === 'email'">Email: {{ user.email }}</p>
-      <p v-if="currentInfo === 'gender'">Gender: {{ user.gender }}</p>
-      <p v-if="currentInfo === 'dob'">Age: {{ user.dob.age }}</p>
-      <p v-if="currentInfo === 'phone'">Phone: {{ user.phone }}</p>
-      <p v-if="currentInfo === 'location'">
-        Location: {{ user.location.city }}, {{ user.location.country }}
-      </p>
+      <div>
+        <p v-if="currentInfo === 'email'">Email: {{ user.email }}</p>
+        <p v-if="currentInfo === 'gender'">Gender: {{ user.gender }}</p>
+        <p v-if="currentInfo === 'dob'">Age: {{ user.dob.age }}</p>
+        <p v-if="currentInfo === 'phone'">Phone: {{ user.phone }}</p>
+        <p v-if="currentInfo === 'location'">
+          Location: {{ user.location.city }}, {{ user.location.country }}
+        </p>
+      </div>
+
+      <div class="my-4">
+        <span
+          @mouseover="changeInfo('email')"
+          class="cursor-pointer text-xl mx-2"
+          >@</span
+        >
+        <span
+          @mouseover="changeInfo('gender')"
+          class="cursor-pointer text-xl mx-2"
+          >G</span
+        >
+        <span @mouseover="changeInfo('dob')" class="cursor-pointer text-xl mx-2"
+          >A</span
+        >
+        <span
+          @mouseover="changeInfo('phone')"
+          class="cursor-pointer text-xl mx-2"
+          >P</span
+        >
+        <span
+          @mouseover="changeInfo('location')"
+          class="cursor-pointer text-xl mx-2"
+          >L</span
+        >
+      </div>
+
+      <button
+        @click="reloadUser"
+        class="bg-blue-500 text-white p-2 rounded mt-4"
+      >
+        Load New User
+      </button>
     </div>
-
-    <div>
-      <span @mouseover="changeInfo('email')">@</span>
-      <span @mouseover="changeInfo('gender')">G</span>
-      <span @mouseover="changeInfo('dob')">A</span>
-      <span @mouseover="changeInfo('phone')">P</span>
-      <span @mouseover="changeInfo('location')">L</span>
-    </div>
-
-    <button @click="reloadUser">Load New User</button>
   </div>
-  <div v-else>
+  <div v-else class="flex justify-center items-center h-screen">
     <p>Loading...</p>
   </div>
 </template>
