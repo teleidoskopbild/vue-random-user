@@ -24,8 +24,11 @@ const changeInfo = (type) => {
 </script>
 
 <template>
-  <div v-if="user" class="flex justify-center items-center h-screen">
-    <div class="bg-blue-400 p-8 rounded-lg shadow-lg text-center w-96 h-96">
+  <div
+    v-if="user"
+    class="flex justify-center items-center h-screen bg-blue-200"
+  >
+    <div class="bg-blue-300 p-8 rounded-lg shadow-lg text-center w-96 h-96">
       <h1 class="text-2xl font-semibold">
         {{ user.name.first }} {{ user.name.last }}
       </h1>
@@ -38,7 +41,7 @@ const changeInfo = (type) => {
 
       <div>
         <p v-if="currentInfo === 'email'">Email: {{ user.email }}</p>
-        <p v-if="currentInfo === 'gender'">Gender: {{ user.gender }}</p>
+        <p v-if="currentInfo === 'nationality'">Nationality: {{ user.nat }}</p>
         <p v-if="currentInfo === 'dob'">Age: {{ user.dob.age }}</p>
         <p v-if="currentInfo === 'phone'">Phone: {{ user.phone }}</p>
         <p v-if="currentInfo === 'location'">
@@ -49,32 +52,63 @@ const changeInfo = (type) => {
       <div class="my-4">
         <span
           @mouseover="changeInfo('email')"
-          class="cursor-pointer text-xl mx-2"
-          >@</span
+          class="cursor-pointer text-xl mx-2 inline-flex justify-center items-center"
         >
+          <img
+            src="./assets/icons/email.svg"
+            alt="Email"
+            class="w-6 h-6 object-contain"
+          />
+        </span>
+
         <span
-          @mouseover="changeInfo('gender')"
-          class="cursor-pointer text-xl mx-2"
-          >G</span
+          @mouseover="changeInfo('nationality')"
+          class="cursor-pointer text-xl mx-2 inline-flex justify-center items-center"
         >
-        <span @mouseover="changeInfo('dob')" class="cursor-pointer text-xl mx-2"
-          >A</span
+          <img
+            src="./assets/icons/nationality.svg"
+            alt="Nationality"
+            class="w-6 h-6 object-contain"
+          />
+        </span>
+
+        <span
+          @mouseover="changeInfo('dob')"
+          class="cursor-pointer text-xl mx-2 inline-flex justify-center items-center"
         >
+          <img
+            src="./assets/icons/dob.svg"
+            alt="Age"
+            class="w-6 h-6 object-contain"
+          />
+        </span>
+
         <span
           @mouseover="changeInfo('phone')"
-          class="cursor-pointer text-xl mx-2"
-          >P</span
+          class="cursor-pointer text-xl mx-2 inline-flex justify-center items-center"
         >
+          <img
+            src="./assets/icons/phone.svg"
+            alt="Phone"
+            class="w-6 h-6 object-contain"
+          />
+        </span>
+
         <span
           @mouseover="changeInfo('location')"
-          class="cursor-pointer text-xl mx-2"
-          >L</span
+          class="cursor-pointer text-xl mx-2 inline-flex justify-center items-center"
         >
+          <img
+            src="./assets/icons/location.svg"
+            alt="Location"
+            class="w-6 h-6 object-contain"
+          />
+        </span>
       </div>
 
       <button
         @click="reloadUser"
-        class="bg-blue-500 text-white p-2 rounded mt-4"
+        class="bg-blue-400 text-black p-2 rounded mb-4 mt-2 hover:text-white"
       >
         Load New User
       </button>
@@ -92,17 +126,15 @@ span {
   cursor: pointer;
   font-weight: bold;
   color: black;
-  background-color: white;
   transition: all 0.3s ease;
 }
-
-span:hover {
-  color: white;
-  background-color: rgb(180, 180, 180);
+span:hover img {
+  filter: invert(1);
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.5);
 }
 
 button {
-  margin-top: 20px;
   padding: 10px 20px;
   cursor: pointer;
 }
